@@ -33,6 +33,8 @@ public class ProductManager {
         return product;
     }
     
+    
+    
     public void printListProducts(Product[] products) {
         for(int i  = 0; i < products.length; i++) {
             System.out.printf("%d. Товар: %s Цена: %s Количество: %s%n"

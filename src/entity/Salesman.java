@@ -43,5 +43,4 @@ public class Salesman {
         return "Salesman{" + "name=" + name + ", jobTitle=" + jobTitle + '}';
     }
     
-    
 }

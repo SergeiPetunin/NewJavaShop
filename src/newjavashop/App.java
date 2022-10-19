@@ -7,6 +7,7 @@ package newjavashop;
 
 import entity.Buyer;
 import entity.Product;
+import entity.Purchase;
 import entity.Salesman;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -27,6 +28,7 @@ public class App {
     private Product[] products;
     private Buyer[] buyers;
     private Salesman[] salesmans;
+    private Purchase[] purchases;
     
     public App() {
         scanner = new Scanner(System.in);
@@ -37,8 +39,10 @@ public class App {
         products = new Product[0];
         buyers = new Buyer[0];
         salesmans = new Salesman[0];
+        purchases = new Purchase[0];   
         
-        testProduct();
+        testProduct1();
+        testProduct2();
         testBuyer();
         testSalesman();
     }
@@ -56,6 +60,8 @@ public class App {
             System.out.println("4. Список покапателей");
             System.out.println("5. Создать продавца");
             System.out.println("6. Список продавов");
+            System.out.println("7. Сделать покупку");
+            System.out.println("8. История покупок");
             System.out.print("Выберете функцию:");
             int task = scanner.nextInt();
             scanner.nextLine();
@@ -70,27 +76,37 @@ public class App {
                     pm.printListProducts(products);
                     break;
                 case 3:
-                    //addBuyer(bm.createBuyer());
+                    addBuyers(bm.createBuyer());
                     break;
                 case 4:
                     bm.printListBuyers(buyers);
                     break;
                 case 5:
-                    //addSalesman();
+                    addSalesman(sm.createSalesman());
                     break;
                 case 6:
                     sm.printListSalesmans(salesmans);
-                    break;    
+                    break;
+                case 7:
+                    addPurchases(bm.createPurchase(salesmans, buyers, products));
+                case 8:
+                    bm.printListPurchases(purchases);
+                    break; 
                 
             }
         }while(repeat);
         System.out.println("Пока!");
     }
     
-    private void testProduct() {
+    private void testProduct1() {
         Product product1 = new Product("Гребешки","10.50/кг",10);
         products = Arrays.copyOf(products, products.length + 1);
         products[products.length - 1] = product1;
+    }
+    private void testProduct2() {
+        Product product2 = new Product("Лук Рэпчаты","4.20/кг",10);
+        products = Arrays.copyOf(products, products.length + 1);
+        products[products.length - 1] = product2;
     }
     
     private void testBuyer() {
@@ -108,6 +124,7 @@ public class App {
     public void addProduct(Product product){
         products = Arrays.copyOf(products, products.length + 1);
         products[products.length - 1] = product;
+        
     }
     
     public void addBuyers(Buyer buyer) {
@@ -119,5 +136,10 @@ public class App {
         salesmans = Arrays.copyOf(salesmans, salesmans.length + 1);
         salesmans[salesmans.length - 1] = salesman;
     }
+    
+    private void addPurchases(Purchase purchase){
+        purchases = Arrays.copyOf(purchases, purchases.length+1);
+        purchases[purchases.length-1] = purchase;
+    };
 
 }
